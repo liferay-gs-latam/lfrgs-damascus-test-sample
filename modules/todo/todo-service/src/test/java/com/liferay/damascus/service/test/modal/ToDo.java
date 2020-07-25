@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ToDoBuilder {
+public class ToDo {
 
 	private String title;
 
@@ -22,6 +22,7 @@ public class ToDoBuilder {
 	private String urlTitle;
 	private String todoText;
 	private String todoTitleName;
+	private Boolean todoBooleanStat;
 
 	@JsonIgnore
 	private Long groupId;
@@ -41,8 +42,6 @@ public class ToDoBuilder {
 	private Instant modifiedDate;
 	@JsonIgnore
 	private Instant statusDate;
-	@JsonIgnore
-	private Boolean todoBooleanStat;
 	@JsonIgnore
 	private Instant todoDateTime;
 	@JsonIgnore

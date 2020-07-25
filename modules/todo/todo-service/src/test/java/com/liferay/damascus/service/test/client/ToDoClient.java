@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 import org.apache.http.HttpStatus;
 
 import com.liferay.damascus.service.test.modal.ConstantsApi;
-import com.liferay.damascus.service.test.modal.ToDoBuilder;
+import com.liferay.damascus.service.test.modal.ToDo;
 import com.liferay.damascus.service.test.utils.BaseApi;
 
 import io.restassured.response.ValidatableResponse;
@@ -34,7 +34,7 @@ public class ToDoClient extends BaseApi {
 	        .statusCode(HttpStatus.SC_OK);
 	}
 
-	public ToDoBuilder getToDo_byPrimaryKey_sucess_BuilderPattern(Integer primaryKey) {
+	public ToDo getToDo_byPrimaryKey_sucess_BuilderPattern(Integer primaryKey) {
 		
 		return
 				
@@ -52,10 +52,10 @@ public class ToDoClient extends BaseApi {
             statusCode(HttpStatus.SC_OK).
             extract().
                 body().
-                    as(ToDoBuilder.class);
+                    as(ToDo.class);
 	}
 
-	public ToDoBuilder deleteToDo_byPrimaryKey_sucess_BuilderPattern(Integer primaryKey) {
+	public ToDo deleteToDo_byPrimaryKey_sucess_BuilderPattern(Integer primaryKey) {
 		
 		return
 				
@@ -77,7 +77,7 @@ public class ToDoClient extends BaseApi {
 			statusCode(HttpStatus.SC_OK).
 			extract().
 				body().
-				as(ToDoBuilder.class);
+				as(ToDo.class);
 	}
 
 	public ValidatableResponse deleteToDo_primaryKeyDoesNotExist_404NotFound(Integer primaryKey) {
@@ -101,7 +101,7 @@ public class ToDoClient extends BaseApi {
 	}
 	
 		
-	public void addNewToDoList_success(ToDoBuilder toDoBuilder) {
+	public void addNewToDoList_success(ToDo toDoBuilder) {
         
 		given()
 			.auth()
@@ -110,10 +110,9 @@ public class ToDoClient extends BaseApi {
 
             .body(toDoBuilder)
         .when()
-            .post(ADD_NEW_TODO_LIST).
+            .post(ConstantsApi.ADD_NEW_TODO_LIST).
         then().
 	        statusCode(HttpStatus.SC_OK);
-        	
 	}
 	
 	public void updateToDoList_success() {
@@ -122,7 +121,4 @@ public class ToDoClient extends BaseApi {
 	public void moveToTrashToDoList_success() {
 		
 	}
-	
-	private static final String ADD_NEW_TODO_LIST = "/todo.todo/add-entry";
-	
 }
