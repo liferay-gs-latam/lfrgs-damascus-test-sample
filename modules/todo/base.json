@@ -1,0 +1,87 @@
+{
+  "projectName": "Todo",
+  "packageName" : "com.liferay.sb.test",
+  "liferayVersion": "7.2",
+  "applications": [
+    {
+      "model"       : "Todo",
+      "title"       : "Todo Test",
+      "web"         : "true",
+      "asset": {
+        "assetTitleFieldName": "todoTitleName",
+        "assetSummaryFieldName": "todoSummaryName",
+        "categories": "true",
+        "discussion": "true",
+        "ratings": "true",
+        "tags": "true",
+        "relatedAssets": "true",
+        "fullContentFieldName": "todofullContent",
+        "workflow": "true",
+        "generateActivity": "true",
+        "trash":"true",
+        "advancedSearch": "true",
+        "exportExcel": "true"
+      },
+      "fieldsName" : "Todos",
+      "fields": [
+        {
+          "type": "com.liferay.damascus.cli.json.fields.Long",
+          "primary":true,
+          "name": "todoId",
+          "title": "Todo Id",
+          "showFieldInView": "false",
+          "required": "true"
+        },
+        {
+          "type": "com.liferay.damascus.cli.json.fields.Varchar",
+          "name": "title",
+          "title": "Title",
+          "length": "80",
+          "showFieldInView": "true",
+          "required": "true"
+        },
+        {
+          "type": "com.liferay.damascus.cli.json.fields.Boolean",
+          "name": "todoBooleanStat",
+          "title": "Todo Boolean Stat"
+        },
+        {
+          "type": "com.liferay.damascus.cli.json.fields.DateTime",
+          "name": "todoDateTime",
+          "title": "Todo DateTime"
+        },
+        {
+          "type": "com.liferay.damascus.cli.json.fields.DocumentLibrary",
+          "name": "todoDocumentLibrary",
+          "title": "Todo DocumentLibrary"
+        },
+        {
+          "type": "com.liferay.damascus.cli.json.fields.Double",
+          "name": "todoDouble",
+          "title": "Todo Double"
+        },
+        {
+          "type": "com.liferay.damascus.cli.json.fields.Integer",
+          "name": "todoInteger",
+          "title": "Todo Integer"
+        },
+        {
+          "type": "com.liferay.damascus.cli.json.fields.RichText",
+          "name": "todoRichText",
+          "title": "Todo RichText"
+        },
+        {
+          "type": "com.liferay.damascus.cli.json.fields.Text",
+          "name": "todoText",
+          "title": "Todo Text"
+        }
+      ],
+      "customValue" : {
+        "your_own_id" : "your_custom_value_for_template_here"
+      },
+      "replacements" : {
+        "original_string_to_be_replaced" : "replacement_string"
+      }
+    }
+  ]
+}

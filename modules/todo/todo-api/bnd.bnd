@@ -1,0 +1,14 @@
+# 
+#  #
+# #
+Bundle-Name: todo-api
+Bundle-SymbolicName: com.liferay.sb.test.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.sb.test.exception,\
+	com.liferay.sb.test.model,\
+	com.liferay.sb.test.service,\
+	com.liferay.sb.test.service.persistence,\
+	com.liferay.sb.test.constants
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../todo-service/service.xml
