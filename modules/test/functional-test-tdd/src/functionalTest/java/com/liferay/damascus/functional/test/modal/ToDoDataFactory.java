@@ -14,6 +14,9 @@ public class ToDoDataFactory {
 
 		ToDo _toDo = ToDo.builder().
 				title(faker.name().nameWithMiddle()).
+				stat(true).
+				todoDouble(faker.number().randomDouble(2, 1, 3)).
+				toDoText(faker.harryPotter().spell()).
 				build();
 
 		return _toDo;

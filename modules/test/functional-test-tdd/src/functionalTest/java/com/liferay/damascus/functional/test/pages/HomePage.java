@@ -41,9 +41,9 @@ public class HomePage implements ILiferayConstants{
 		
 		clickOnAddButtonInToDoPortlet();
 		fillTitleOnToDoForm(toDo.getTitle());
-		setToDoBooleanStatOnToDoForm();
-		fillToDoDoubleOnToDoForm();
-		fillToDoTextOnToDoForm();
+		setToDoBooleanStatOnToDoForm(toDo.isStat());
+		fillToDoDoubleOnToDoForm(toDo.getTodoDouble());
+		fillToDoTextOnToDoForm(toDo.getToDoText());
 		clickOnSubmitToDoForm();
 		
 		_listElement.add(toDo.getTitle());
@@ -59,16 +59,19 @@ public class HomePage implements ILiferayConstants{
 		_commonMethods.input(_titleFieldLocator, titleName);
 	}
 	
-	public void setToDoBooleanStatOnToDoForm() {
-		_commonMethods.clickOnTheElement(_statCheckBoxLocator);
+	public void setToDoBooleanStatOnToDoForm(boolean stat) {
+		if (stat) {
+			_commonMethods.clickOnTheElement(_statCheckBoxLocator);
+		}
 	}
 	
-	public void fillToDoDoubleOnToDoForm() {
-		_commonMethods.input(_toDoDoubleLocator, "2.2");
+	public void fillToDoDoubleOnToDoForm(double toDoDouble) {
+		String toDoDoubleS = Double.toString(toDoDouble);
+		_commonMethods.input(_toDoDoubleLocator, toDoDoubleS);
 	}
 	
-	public void fillToDoTextOnToDoForm() {
-		_commonMethods.input(_toDoTextLocator, "TODO TESTING");
+	public void fillToDoTextOnToDoForm(String text) {
+		_commonMethods.input(_toDoTextLocator, text);
 	}
 
 	public void clickOnSubmitToDoForm() {

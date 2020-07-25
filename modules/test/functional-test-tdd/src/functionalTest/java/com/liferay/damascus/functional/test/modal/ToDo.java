@@ -14,4 +14,7 @@ import lombok.ToString;
 public class ToDo {
 
 	String title;
+	boolean stat;
+	double todoDouble;
+	String toDoText;
 }
