@@ -1,10 +1,14 @@
 package com.liferay.damascus.functional.test.tests;
 
+import java.util.ArrayList;
+
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.liferay.damascus.functional.test.pages.HomePage;
+import com.liferay.damascus.functional.test.pages.ToDoAdminPage;
 import com.liferay.damascus.functional.test.utils.CommonMethods;
 
 public class ToDoTest {
@@ -20,17 +24,21 @@ public class ToDoTest {
 			_commonMethods.logoutBruteForce();
 		}
 	}
-	
+
 	@Test
 	public void validateTheListItemsAppearsToTheUserAfterItHasBeenCreated() {
-		
+
 		_homePage.login();
-		_homePage.addNewToDoList();
-		
-		needToLogout=true;
+		_listElement = _homePage.addNewToDoList();
+
+		Assert.assertTrue(_toDoAdminPage.getFullListFromToDoList().contains(_listElement.get(0)));
+		needToLogout = true;
 	}
 
-	boolean needToLogout=false;
+	boolean needToLogout = false;
+	ArrayList<String> _listElement = new ArrayList<String>();
+
 	CommonMethods _commonMethods = new CommonMethods();
+	ToDoAdminPage _toDoAdminPage = new ToDoAdminPage();
 	HomePage _homePage = new HomePage();
 }

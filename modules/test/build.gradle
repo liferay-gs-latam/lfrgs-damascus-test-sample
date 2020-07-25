@@ -41,7 +41,6 @@ configure(subprojects.findAll { !it.subprojects }) {
 			compile 'org.seleniumhq.selenium:selenium-java:' + seleniumVersion
 			compile 'org.seleniumhq.selenium:selenium-remote-driver:' + seleniumVersion
 			compile 'org.seleniumhq.selenium:selenium-support:' + seleniumVersion
-			
 		}
 
 		deploy {

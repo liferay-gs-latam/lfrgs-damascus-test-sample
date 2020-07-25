@@ -1,5 +1,7 @@
 package com.liferay.damascus.functional.test.pages;
 
+import java.util.ArrayList;
+
 import org.openqa.selenium.By;
 
 import com.liferay.damascus.functional.test.constants.liferay.ILiferayConstants;
@@ -31,16 +33,22 @@ public class HomePage implements ILiferayConstants{
 		_commonMethods.clickOnTheElement(_signInBtnLocator);
 	}
 	
-	public void addNewToDoList() {
+	public ArrayList<String> addNewToDoList() {
 	
+		_listElement = new ArrayList<String>();
+		String titleName = "Entry01-Title";
+
 		_commonMethods.goToSpecificURLPage_onTheSameTab(TODO_ADMIN_CONTROL_PANEL);
 		
 		clickOnAddButtonInToDoPortlet();
-		fillTitleOnToDoForm();
+		fillTitleOnToDoForm(titleName);
 		setToDoBooleanStatOnToDoForm();
 		fillToDoDoubleOnToDoForm();
 		fillToDoTextOnToDoForm();
 		clickOnSubmitToDoForm();
+		
+		_listElement.add(titleName);
+		return _listElement;
 	}
 	
 	public void clickOnAddButtonInToDoPortlet() {
@@ -48,8 +56,8 @@ public class HomePage implements ILiferayConstants{
 		_commonMethods.clickOnTheElement(_addBtnLocator);		
 	}
 	
-	public void fillTitleOnToDoForm() {
-		_commonMethods.input(_titleFieldLocator, "Testing...");
+	public void fillTitleOnToDoForm(String titleName) {
+		_commonMethods.input(_titleFieldLocator, titleName);
 	}
 	
 	public void setToDoBooleanStatOnToDoForm() {
@@ -81,6 +89,7 @@ public class HomePage implements ILiferayConstants{
 	private static final By _toDoDoubleLocator = By.xpath("//*[@id='" + TODO_ADMIN_CONTROL_PANEL_DOUBLE +"']");
 	private static final By _toDoTextLocator = By.xpath("//*[@id='" + TODO_ADMIN_CONTROL_PANEL_TEXT +"']");
 	private static final By _submitBtnLocator = By.xpath("//*[contains(@id,'" + TODO_ADMIN_CONTROL_PANEL_SUBMIT_BTN +"') and @type='submit']");
-	
+
+	ArrayList<String> _listElement;
 	CommonMethods _commonMethods = new CommonMethods();
 }
