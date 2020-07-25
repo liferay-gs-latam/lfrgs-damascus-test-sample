@@ -1,0 +1,4 @@
+Bundle-Name: services-test
+Bundle-SymbolicName: services.test
+Bundle-Version: 1.0.0
+Export-Package: services.test.constants
