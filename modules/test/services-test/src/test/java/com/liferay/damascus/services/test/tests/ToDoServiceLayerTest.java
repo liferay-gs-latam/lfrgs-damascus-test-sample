@@ -5,8 +5,11 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.damascus.service.test.client.ToDoClient;
-import com.liferay.damascus.service.test.modal.ToDo;
+import com.liferay.damascus.service.test.model.ToDo;
+import com.liferay.damascus.service.test.model.ToDoDataFactory;
 
 import io.restassured.response.ValidatableResponse;
 
@@ -49,4 +52,16 @@ public class ToDoServiceLayerTest {
 		response.body("urlTitle", is("testing-title-01"));
 	}
 
+	@Test
+	public void addNewToDoContent_success() throws JsonProcessingException {
+		
+		ToDo toDo = new ToDoDataFactory().createToDoList();
+		String toDoJsonStr = _obj.writeValueAsString(toDo);
+		
+		System.out.println(toDoJsonStr);
+
+		toDoclient.addNewToDoList_success(toDoJsonStr);
+	}
+
+	ObjectMapper _obj = new ObjectMapper();
 }

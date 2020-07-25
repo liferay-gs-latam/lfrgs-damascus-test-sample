@@ -7,8 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.liferay.damascus.functional.test.modal.ToDoDataFactory;
-import com.liferay.damascus.functional.test.modal.ToDo;
+import com.liferay.damascus.functional.test.model.ToDo;
+import com.liferay.damascus.functional.test.model.ToDoDataFactory;
 import com.liferay.damascus.functional.test.pages.HomePage;
 import com.liferay.damascus.functional.test.pages.ToDoAdminPage;
 import com.liferay.damascus.functional.test.utils.CommonMethods;

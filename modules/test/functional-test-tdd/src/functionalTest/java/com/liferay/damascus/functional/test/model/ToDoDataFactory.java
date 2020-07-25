@@ -1,4 +1,4 @@
-package com.liferay.damascus.functional.test.modal;
+package com.liferay.damascus.functional.test.model;
 
 import com.github.javafaker.Faker;
 

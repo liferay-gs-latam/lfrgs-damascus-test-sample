@@ -1,4 +1,4 @@
-package com.liferay.damascus.functional.test.modal;
+package com.liferay.damascus.functional.test.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

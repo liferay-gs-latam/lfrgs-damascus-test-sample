@@ -4,8 +4,8 @@ import static io.restassured.RestAssured.given;
 
 import org.apache.http.HttpStatus;
 
-import com.liferay.damascus.service.test.modal.ConstantsApi;
-import com.liferay.damascus.service.test.modal.ToDo;
+import com.liferay.damascus.service.test.model.ConstantsApi;
+import com.liferay.damascus.service.test.model.ToDo;
 import com.liferay.damascus.service.test.utils.BaseApi;
 
 import io.restassured.response.ValidatableResponse;
@@ -32,27 +32,6 @@ public class ToDoClient extends BaseApi {
 	        
 	    then()
 	        .statusCode(HttpStatus.SC_OK);
-	}
-
-	public ToDo getToDo_byPrimaryKey_sucess_BuilderPattern(Integer primaryKey) {
-		
-		return
-				
-		given().
-		
-			auth().
-			preemptive().
-		    basic(ConstantsApi.EMAIL, ConstantsApi.PASSWORD).
-			pathParam("primaryKey", primaryKey).
-		
-		when().
-			get("todo.todo/get-todo/primary-key/{primaryKey}").
-		
-		then().
-            statusCode(HttpStatus.SC_OK).
-            extract().
-                body().
-                    as(ToDo.class);
 	}
 
 	public ToDo deleteToDo_byPrimaryKey_sucess_BuilderPattern(Integer primaryKey) {
@@ -101,14 +80,14 @@ public class ToDoClient extends BaseApi {
 	}
 	
 		
-	public void addNewToDoList_success(ToDo toDoBuilder) {
+	public void addNewToDoList_success(String toDo) {
         
 		given()
 			.auth()
 			.preemptive()
 		    .basic(ConstantsApi.EMAIL, ConstantsApi.PASSWORD)
 
-            .body(toDoBuilder)
+            .body(toDo)
         .when()
             .post(ConstantsApi.ADD_NEW_TODO_LIST).
         then().
