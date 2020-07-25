@@ -1,4 +1,4 @@
-package com.liferay.damascus.functional.test.constants.liferay;
+package com.liferay.damascus.functional.test.constants;
 
 public interface ILiferayConstants {
 

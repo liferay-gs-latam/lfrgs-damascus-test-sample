@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 
-import com.liferay.damascus.functional.test.constants.liferay.ILiferayConstants;
+import com.liferay.damascus.functional.test.constants.ILiferayConstants;
 import com.liferay.damascus.functional.test.modal.ToDo;
 import com.liferay.damascus.functional.test.utils.CommonMethods;
 import com.liferay.gs.testFramework.core.SeleniumReadPropertyKeys;
