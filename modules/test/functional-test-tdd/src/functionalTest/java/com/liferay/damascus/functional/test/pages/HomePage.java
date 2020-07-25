@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 
 import com.liferay.damascus.functional.test.constants.liferay.ILiferayConstants;
+import com.liferay.damascus.functional.test.modal.ToDo;
 import com.liferay.damascus.functional.test.utils.CommonMethods;
 import com.liferay.gs.testFramework.core.SeleniumReadPropertyKeys;
 
@@ -33,21 +34,19 @@ public class HomePage implements ILiferayConstants{
 		_commonMethods.clickOnTheElement(_signInBtnLocator);
 	}
 	
-	public ArrayList<String> addNewToDoList() {
+	public ArrayList<String> addNewToDoList(ToDo toDo) {
 	
 		_listElement = new ArrayList<String>();
-		String titleName = "Entry01-Title";
-
 		_commonMethods.goToSpecificURLPage_onTheSameTab(TODO_ADMIN_CONTROL_PANEL);
 		
 		clickOnAddButtonInToDoPortlet();
-		fillTitleOnToDoForm(titleName);
+		fillTitleOnToDoForm(toDo.getTitle());
 		setToDoBooleanStatOnToDoForm();
 		fillToDoDoubleOnToDoForm();
 		fillToDoTextOnToDoForm();
 		clickOnSubmitToDoForm();
 		
-		_listElement.add(titleName);
+		_listElement.add(toDo.getTitle());
 		return _listElement;
 	}
 	
