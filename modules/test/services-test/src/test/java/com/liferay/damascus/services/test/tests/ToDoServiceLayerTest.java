@@ -35,5 +35,18 @@ public class ToDoServiceLayerTest {
 
 		Assert.assertTrue(simulacao.equals(null));
 	}
+	
+	@Test
+	public void getToDoContentCreatedTest_success() {
+
+		ValidatableResponse response = toDoclient.getToDoContent(502);
+
+		response.body("title", is("Testing Title Required 01"));
+		response.body("todoRichText", is("<p>Testing Content 01</p>"));
+		response.body("todoSummaryName", is("Testing Summary 01"));
+		response.body("todoText", is("Testing Text 01"));
+		response.body("todoTitleName", is("Testing Title 01"));
+		response.body("urlTitle", is("testing-title-01"));
+	}
 
 }
