@@ -140,17 +140,6 @@ public class TodoLocalServiceImpl extends TodoLocalServiceBaseImpl {
 				entry, serviceContext.isAddGroupPermissions(),
 				serviceContext.isAddGuestPermissions());
 		}
-		else {
-			addEntryResources(entry, serviceContext.getModelPermissions());
-		}
-
-		// Asset
-
-		updateAsset(
-			userId, entry, serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames(),
-			serviceContext.getAssetLinkEntryIds(),
-			serviceContext.getAssetPriority());
 
 		// Workflow
 
@@ -939,7 +928,7 @@ public class TodoLocalServiceImpl extends TodoLocalServiceBaseImpl {
 	 * @return
 	 * @throws PortalException
 	 */
-	protected Todo _addEntry(Todo entry, ServiceContext serviceContext)
+	public Todo _addEntry(Todo entry, ServiceContext serviceContext)
 		throws PortalException {
 
 		long id = counterLocalService.increment(Todo.class.getName());
@@ -960,7 +949,7 @@ public class TodoLocalServiceImpl extends TodoLocalServiceBaseImpl {
 
 		// Friendly URLs
 		String urlTitle = getUniqueUrlTitle(newEntry, entry.getTodoTitleName());
-		urlTitle = updateFriendlyURLs(newEntry, urlTitle, serviceContext);
+//		urlTitle = updateFriendlyURLs(newEntry, urlTitle, serviceContext);
 		newEntry.setUrlTitle(urlTitle);
 
 		newEntry.setTodoTitleName(entry.getTodoTitleName());
@@ -1061,7 +1050,7 @@ public class TodoLocalServiceImpl extends TodoLocalServiceBaseImpl {
 	* @return string
 	* @throws PortalException
 	*/
-	protected String updateFriendlyURLs(
+	public String updateFriendlyURLs(
 		Todo entry, String urlTitle,
 		ServiceContext serviceContext)
 		throws PortalException {
@@ -1071,17 +1060,20 @@ public class TodoLocalServiceImpl extends TodoLocalServiceBaseImpl {
 
 			return urlTitle;
 		}
+		
+		long classNameId = _classNameLocalService.getClassNameId(
+				Todo.class);
 
 		List<FriendlyURLEntry> friendlyURLEntries =
 		_friendlyURLEntryLocalService.getFriendlyURLEntries(
 			entry.getGroupId(),
-			classNameLocalService.getClassNameId(Todo.class),
+			classNameId,
 			entry.getPrimaryKey());
 
 		FriendlyURLEntry newFriendlyURLEntry =
 			_friendlyURLEntryLocalService.addFriendlyURLEntry(
 				entry.getGroupId(),
-				classNameLocalService.getClassNameId(Todo.class),
+				classNameId,
 				entry.getPrimaryKey(), urlTitle, serviceContext);
 
 		for (FriendlyURLEntry friendlyURLEntry : friendlyURLEntries) {
@@ -1111,7 +1103,7 @@ public class TodoLocalServiceImpl extends TodoLocalServiceBaseImpl {
 	/**
 	 * Generating a unique URL for asset
 	 */
-	protected String getUniqueUrlTitle(Todo entry, String newTitle) {
+	public String getUniqueUrlTitle(Todo entry, String newTitle) {
 		long entryId = entry.getPrimaryKey();
 
 		String urlTitle = null;
@@ -1219,9 +1211,29 @@ public class TodoLocalServiceImpl extends TodoLocalServiceBaseImpl {
 
 	@Reference
 	private ClassNameLocalService _classNameLocalService;
+	
+	/**
+	 * Sets the user local service.
+	 *
+	 * @param userLocalService the user local service
+	 */
+	public void setClassNameLocalService(
+			ClassNameLocalService classNameLocalService) {
+		this._classNameLocalService = classNameLocalService;
+	}
 
 	@Reference
 	private FriendlyURLEntryLocalService _friendlyURLEntryLocalService;
+	
+	/**
+	 * Sets the user local service.
+	 *
+	 * @param friendlyURLEntryLocalService the user local service
+	 */
+	public void setFriendlyURLEntryLocalService(
+			FriendlyURLEntryLocalService friendlyURLEntryLocalService) {
+		this._friendlyURLEntryLocalService = friendlyURLEntryLocalService;
+	}
 
 	@Reference
 	private Portal _portal;
