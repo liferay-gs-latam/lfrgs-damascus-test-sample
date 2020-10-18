@@ -11,4 +11,23 @@ This project using the following languages and frameworks:
 * [Liferay - frwSeleniumCommons](https://github.com/manoelcyreno/selenium-commons) as the Selenium binaries management
 * [Lombok](https://projectlombok.org/) to minimize the boilerplate in the Java code
 
+## Test Projects
+* Functional Testing - [Link](https://github.com/liferay-gs-latam/lfrgs-damascus-test-sample/tree/dev/modules/test/functional-test-tdd)
+* Service Testing - [(Link 1 - Test Class)](https://github.com/liferay-gs-latam/lfrgs-damascus-test-sample/tree/dev/modules/test/services-test) || [(Link 2 - Client Class)](https://github.com/liferay-gs-latam/lfrgs-damascus-test-sample/tree/dev/modules/todo/todo-service/src/test/java/com/liferay/damascus/service/test)
+* Unit Testing - [Link](https://github.com/liferay-gs-latam/lfrgs-damascus-test-sample/tree/dev/modules/todo/todo-service/src/test/java/com/liferay/damascus/unit)
+
+## How the project is structured:
+* Functional Testing
+> Unique module project was created;
+>> Structered: Constants | Model | Pages | Suite | Tests | CommonMethods (base class)<br />
+>> Patterns: Page Object | Data Factory
+
+* Service Testing
+> The strategy is to create a project where we need to divid in two parts
+>> In test module: package to create the tests <br />
+>> In microservice module: local where was create client module that contains (client | model | utils) <br />
+
+* Unit Testing
+> Its part of the microservice module. To unit testing, the best strategy is to use that into the each microservice module.
+
 To be continue...
