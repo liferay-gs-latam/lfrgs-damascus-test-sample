@@ -546,15 +546,44 @@ public abstract class TodoLocalServiceBaseImpl
 
 	@Reference
 	protected TodoPersistence todoPersistence;
-
+	
+	/**
+	 * Sets the feeling persistence.
+	 *
+	 * @param feelingPersistence the feeling persistence
+	 */
+	public void setTodoPersistence(TodoPersistence todoPersistence) {
+		this.todoPersistence = todoPersistence;
+	}
+	
 	@Reference
 	protected com.liferay.counter.kernel.service.CounterLocalService
 		counterLocalService;
+	
+	/**
+	 * Sets the user local service.
+	 *
+	 * @param counterLocalService the user local service
+	 */
+	public void setCounterLocalService(
+			com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+			this.counterLocalService = counterLocalService;
+		}
 
 	@Reference
 	protected com.liferay.portal.kernel.service.ClassNameLocalService
 		classNameLocalService;
-
+	
+	/**
+	 * Sets the user local service.
+	 *
+	 * @param classNameLocalService the user local service
+	 */
+	public void setclassNameLocalService(
+			com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService) {
+			this.classNameLocalService = classNameLocalService;
+		}
+	
 	@Reference
 	protected com.liferay.portal.kernel.service.PortletPreferencesLocalService
 		portletPreferencesLocalService;
@@ -566,6 +595,15 @@ public abstract class TodoLocalServiceBaseImpl
 	@Reference
 	protected com.liferay.portal.kernel.service.UserLocalService
 		userLocalService;
+	/**
+	 * Sets the user local service.
+	 *
+	 * @param userLocalService the user local service
+	 */
+	public void setUserLocalService(
+		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+		this.userLocalService = userLocalService;
+	}
 
 	@Reference
 	protected com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService
