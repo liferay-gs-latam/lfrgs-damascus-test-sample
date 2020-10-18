@@ -2,8 +2,6 @@ package com.liferay.damascus.unit.test;
 
 import java.time.Instant;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import org.junit.Assert;
@@ -18,7 +16,6 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.sb.test.model.Todo;
 import com.liferay.sb.test.model.impl.TodoImpl;
 import com.liferay.sb.test.service.base.TodoLocalServiceBaseImpl;
@@ -86,9 +83,6 @@ public class ToDoLocalServiceImplTest {
 
 	private void mock_setClassNameLocalService_getClassNameId() {
 
-		ClassNameLocalService classNameLocalService = Mockito.mock(ClassNameLocalService.class);
-		TodoLocalServiceBaseImpl _todoclassNameLocal = Mockito.mock(TodoLocalServiceBaseImpl.class);
-
 		Mockito.when(classNameLocalService.getClassNameId(Todo.class)).thenReturn(34901L);
 		_todoServiceImpl.setClassNameLocalService(classNameLocalService);
 		_todoclassNameLocal.setclassNameLocalService(classNameLocalService);
@@ -96,24 +90,8 @@ public class ToDoLocalServiceImplTest {
 
 	private void mock_getUniqueUrlTitle(Todo toDo, ServiceContext serviceContext) {
 
-		FriendlyURLEntryLocalService _friendlyURLEntryLocalService = Mockito.mock(FriendlyURLEntryLocalService.class);
 		Mockito.when(_friendlyURLEntryLocalService.getUniqueUrlTitle(GROUP_ID, 34901, 2701, "2701")).thenReturn("2701");
-//		Mockito.when(_friendlyURLEntryLocalService.addFriendlyURLEntry(GROUP_ID, 34901, 2701, "2701", serviceContext)).thenReturn(toDo);
-
 		_todoServiceImpl.setFriendlyURLEntryLocalService(_friendlyURLEntryLocalService);
-	}
-	
-	private ModelPermissions mock_ModelPermissions() {
-		
-		modelPermissions.setResourceName(TITLE_NAME);
-		
-		Map<String, String> map = new HashMap<String, String>();
-
-        map.put("VIEW", new String("V1"));
-		
-//		modelPermissions.addRolePermissions();
-		
-		return modelPermissions;
 	}
 
 	@Before
@@ -124,10 +102,13 @@ public class ToDoLocalServiceImplTest {
 		_todoServiceImpl = new ToDoLocalServiceImplStub();
 
 		_user = Mockito.mock(User.class);
+		_todoPersistence = Mockito.mock(TodoPersistence.class);
+		_userLocalService = Mockito.mock(UserLocalService.class);
 		_userLocalService = Mockito.mock(UserLocalService.class);
 		_counterLocalService = Mockito.mock(CounterLocalService.class);
-		_userLocalService = Mockito.mock(UserLocalService.class);
-		_todoPersistence = Mockito.mock(TodoPersistence.class);
+		classNameLocalService = Mockito.mock(ClassNameLocalService.class);
+		_todoclassNameLocal = Mockito.mock(TodoLocalServiceBaseImpl.class);
+		_friendlyURLEntryLocalService = Mockito.mock(FriendlyURLEntryLocalService.class);
 	}
 
 	private static final long COMPANY_ID = 20101;
@@ -137,13 +118,15 @@ public class ToDoLocalServiceImplTest {
 	private static final String USER_NAME = "Test Test";
 	private static final String TITLE_NAME = "Testing";
 
-	User _user;
+	private User _user;
 	private Todo _toDo;
-	private ModelPermissions modelPermissions;
 	private ServiceContext _serviceContext;
-	private CounterLocalService _counterLocalService;
 	private TodoPersistence _todoPersistence;
 	private UserLocalService _userLocalService;
+	private CounterLocalService _counterLocalService;
+	private ClassNameLocalService classNameLocalService;
+	private TodoLocalServiceBaseImpl _todoclassNameLocal;
+	private FriendlyURLEntryLocalService _friendlyURLEntryLocalService;
 
 	ToDoLocalServiceImplStub _todoServiceImpl;
 }
